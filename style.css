@@ -28,11 +28,7 @@
 #mylink{
   display:none;
 }
-.action-section {
-   display: grid;
-   grid-template-rows:repeat(5,1fr);
-  overflow-y: scroll;
-}
+
 .action-section h1,.action-section  input,.action-section button,.action-section p,h3{
   margin:0.5rem;
   padding: 0.5rem;
@@ -50,4 +46,9 @@
   width:100%;
   height:auto;
 }  
+.action-section {
+   display: grid;
+   grid-template-rows:repeat(5,1fr);
+  overflow-y: scroll;
+  }
 }
