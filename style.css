@@ -1,4 +1,4 @@
-*{
+* {
   margin: 0;
   box-sizing: border-box;
 }
@@ -6,48 +6,60 @@
   height: 100vh;
 }
 /*_____layout_____*/
-.container,.static-section{
-  display: flex;
-}
-.static-section {
-  width: 30%;
-  flex-direction: column;
-}
-.action-section {
-  flex: 1;
-}
-/*_______padding margin_____*/
-.but,.static-section,.action-section{
-  padding:1rem;
-  border:1px solid black;
-}
-.but{
-  margin-top:0.5rem;
-}
-/*_____reveal answer_____ */
-#mylink{
-  display:none;
-}
-.action-section {
-   display: grid;
-   grid-template-rows:repeat(5,1fr);
-  overflow-y: scroll;
-}
-.action-section h1,.action-section  input,.action-section button,.action-section p,h3{
-  margin:0.5rem;
-  padding: 0.5rem;
-}
-/*___setting color____*/
-.action-section p,h3{
-  color:red;
-}
-@media (max-width:576px){
-.container{
+.container {
   display: grid;
   grid-template-rows: 1fr 1fr;
 }
-.static-section{
-  width:100%;
-  height:auto;
-}  
+.static-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+}
+/*_______padding margin_____*/
+.but,
+.static-section,
+.action-section {
+  padding: 1rem;
+  border: 1px solid black;
+}
+.but {
+  margin-top: 0.5rem;
+}
+/*_____reveal answer_____ */
+#mylink {
+  display: none;
+}
+.action-section {
+  display: grid;
+  grid-template-rows: repeat(9, 1fr);
+  overflow-y: scroll;
+}
+.action-section h1,
+.action-section input,
+.action-section button {
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+}
+.action-section input,
+.action-section button {
+  width: 80%;
+}
+/*___setting color____*/
+.action-section p,
+h3 {
+  color: red;
+}
+@media (min-width: 1024px) {
+  .container,
+  .static-section {
+    display: flex;
+  }
+  .static-section {
+    width: 30%;
+    flex-direction: column;
+  }
+  .action-section {
+    flex: 1;
+  }
 }
