@@ -17,13 +17,13 @@ function startplay() {
   const tj = document.createElement("h1");
   tj.textContent = "Enter your choice (rock, paper, or scissors)";
   actionContainer.appendChild(tj);
-
+  const inputElement = document.createElement("input");
+  inputElement.setAttribute("type", "text");
+  inputElement.style.fontSize = "25px";
+  inputElement.style.padding = "10px";
+  actionContainer.appendChild(inputElement);
   const choices = ["rock", "paper", "scissors"];
   //playerchoice
-  var inputElement = document.createElement("input");
-  inputElement.setAttribute("type", "text");
-  actionContainer.appendChild(inputElement);
-  inputElement.style.fontSize = "50px";
   var playerChoice;
   inputElement.addEventListener("input", function () {
     playerChoice = inputElement.value.toLowerCase().trim();
@@ -54,6 +54,7 @@ function startplay() {
       computerChoice;
     actionContainer.appendChild(tj);
     actionContainer.appendChild(tj2);
+    inputElement.value = "";
   });
 }
 
@@ -104,7 +105,11 @@ function generateJoke() {
   clrpage();
   const randomIndex = Math.floor(Math.random() * jokes.length);
   const tj = document.createElement("h1");
+  const tj1 = document.createElement("p");
   tj.textContent = jokes[randomIndex];
+  tj1.innerHTML = "&#x263A";
+  tj1.style.fontSize = "60px";
+  tj.appendChild(tj1);
   actionContainer.appendChild(tj);
 }
 
@@ -252,6 +257,7 @@ function setans() {
   const a = document.createElement("h3");
   q.textContent = randomRiddle.question;
   a.textContent = randomRiddle.answer;
+  a.style.padding = "20px";
   actionContainer.appendChild(q);
   actionContainer.appendChild(a);
 }
