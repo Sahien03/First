@@ -1,58 +1,72 @@
 const actionContainer = document.querySelector(".action-section");
 
-function clrpage(){
-while(actionContainer.firstChild) {
-  actionContainer.removeChild(actionContainer.firstChild); // Remove the first child node until there are no child nodes left
-}
-myLink.style.display="none";
+function clrpage() {
+  while (actionContainer.firstChild) {
+    actionContainer.removeChild(actionContainer.firstChild); // Remove the first child node until there are no child nodes left
+  }
+  myLink.style.display = "none";
 }
 //play game
 // Event listener for button click
 const pbutton = document.getElementById("play-game");
 pbutton.addEventListener("click", startplay);
 //startplay function
-function startplay(){
-    clrpage();
-    //choices
-    const tj = document.createElement('h1');
-    tj.textContent = "Enter your choice (rock, paper, or scissors)";
-      actionContainer.appendChild(tj);
-  
-  const choices = ['rock', 'paper', 'scissors'];
-    //playerchoice
-  var inputElement = document.createElement("input");
-        inputElement.setAttribute("type", "text");
-    actionContainer.appendChild(inputElement);
-       var playerChoice;      inputElement.addEventListener("input", function() {
-            playerChoice = inputElement.value.toLowerCase().trim();
-                 return;
-             });
-    var buttonElement = document.createElement("button");
-    buttonElement.innerHTML = "Click Me"; // Button label
-       actionContainer.appendChild(buttonElement);
-    buttonElement.addEventListener("click", function() {
-           
- 
-  if (!choices.includes(playerChoice)) {
-    alert('Invalid choice! Please choose rock, paper, or scissors.');
+function startplay() {
+  clrpage();
+  //choices
+  const tj = document.createElement("h1");
+  tj.textContent = "Enter your choice (rock, paper, or scissors)";
+  actionContainer.appendChild(tj);
+  const inputElement = document.createElement("input");
+  inputElement.setAttribute("type", "text");
+  inputElement.style.fontSize = "25px";
+  inputElement.style.padding = "10px";
+  actionContainer.appendChild(inputElement);
+  const choices = ["rock", "paper", "scissors"];
+  //playerchoice
+  var playerChoice;
+  inputElement.addEventListener("input", function () {
+    playerChoice = inputElement.value.toLowerCase().trim();
     return;
-  }
+  });
+  var buttonElement = document.createElement("button");
+  buttonElement.innerHTML = "Ok"; // Button label
+  buttonElement.style.padding = "10px";
+  actionContainer.appendChild(buttonElement);
+  buttonElement.addEventListener("click", function () {
+    if (!choices.includes(playerChoice)) {
+      alert("Invalid choice! Please choose rock, paper, or scissors.");
+      return;
+    }
 
-  const computerChoice = choices[Math.floor(Math.random() * choices.length)];
-    const tj = document.createElement('h1');
-      const tj2 = document.createElement('p');  tj.textContent=(determineWinner(playerChoice, computerChoice))
-    tj2.textContent = "Player Choice: "+ playerChoice+" , "+"Computer Choice:" +computerChoice;
-        actionContainer.appendChild(tj);
-        actionContainer.appendChild(tj2);
-});
+    const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+    const tj = document.createElement("p");
+    tj.style.fontSize = "22px";
+    tj.style.margin = "10px";
+    const tj2 = document.createElement("p");
+    tj2.style.margin = "10px";
+    tj.textContent = determineWinner(playerChoice, computerChoice);
+    tj2.textContent =
+      "Player Choice: " +
+      playerChoice +
+      " , " +
+      "Computer Choice:" +
+      computerChoice;
+    actionContainer.appendChild(tj);
+    actionContainer.appendChild(tj2);
+    inputElement.value = "";
+  });
 }
 
-
 function determineWinner(playerChoice, computerChoice) {
-if(playerChoice== computerChoice){
- return "match draw";
- }
-  return `${/rockscissors|scissorspaper|paperrock/.test(playerChoice+computerChoice)?"You":"Computer"} won`;
+  if (playerChoice == computerChoice) {
+    return "match draw";
+  }
+  return `${
+    /rockscissors|scissorspaper|paperrock/.test(playerChoice + computerChoice)
+      ? "You"
+      : "Computer"
+  } won`;
 }
 
 // List of jokes
@@ -83,27 +97,25 @@ const jokes = [
   "What did the grape say when it got stepped on? Nothing, it just let out a little wine!",
   "Why couldn't the leopard play hide and seek? Because he was always spotted!",
   "What do you call a fake noodle? An impasta!",
-  "Why don't eggs tell jokes? Because they might crack up!"
+  "Why don't eggs tell jokes? Because they might crack up!",
 ];
-
-
 
 // Function to generate a random joke
 function generateJoke() {
   clrpage();
   const randomIndex = Math.floor(Math.random() * jokes.length);
-  const tj = document.createElement('h1');
-    tj.textContent = jokes[randomIndex];
-      actionContainer.appendChild(tj);
-  
+  const tj = document.createElement("h1");
+  const tj1 = document.createElement("p");
+  tj.textContent = jokes[randomIndex];
+  tj1.innerHTML = "&#x263A";
+  tj1.style.fontSize = "60px";
+  tj.appendChild(tj1);
+  actionContainer.appendChild(tj);
 }
 
 // Event listener for button click
 const button = document.getElementById("Tmjo");
 button.addEventListener("click", generateJoke);
-
-
-
 
 // Array of quotes
 const quotes = [
@@ -126,150 +138,149 @@ const quotes = [
   "A successful man is one who can lay a firm foundation with the bricks others have thrown at him. - David Brinkley",
   "The only place where success comes before work is in the dictionary. - Vidal Sassoon",
   "Success is not the key to happiness. Happiness is the key to success. If you love what you are doing, you will be successful. - Albert Schweitzer",
-  "Believe in yourself, take on your challenges, dig deep within yourself to conquer fears. Never let anyone bring you down. You got this. - Chantal Sutherland"
+  "Believe in yourself, take on your challenges, dig deep within yourself to conquer fears. Never let anyone bring you down. You got this. - Chantal Sutherland",
 ];
 
 // Function to generate a random quote
 function generateQuote() {
-    clrpage()
+  clrpage();
   // Get a random index from the quotes array
   const randomIndex = Math.floor(Math.random() * quotes.length);
-  
-    const tj = document.createElement('h1');
-    // Get the quote at the random index
 
-    tj.textContent = quotes[randomIndex];
-    // Display the quote
-  
-      actionContainer.appendChild(tj);
-  
-  
-  
+  const tj = document.createElement("h1");
+  // Get the quote at the random index
+
+  tj.textContent = quotes[randomIndex];
+  // Display the quote
+
+  actionContainer.appendChild(tj);
 }
 
 // Get the quote button element
-const quoteButton = document.getElementById('quote');
+const quoteButton = document.getElementById("quote");
 
 // Add a click event listener to the button
-quoteButton.addEventListener('click', generateQuote);
-
-
+quoteButton.addEventListener("click", generateQuote);
 
 // Define an array of riddles
 const riddles = [
   {
-    question: "I am taken from a mine, and shut up in a wooden case, from which I am never released, and yet I am used by almost every person. What am I?",
-    answer: "Pencil"
+    question:
+      "I am taken from a mine, and shut up in a wooden case, from which I am never released, and yet I am used by almost every person. What am I?",
+    answer: "Pencil",
   },
   {
     question: "What has a heart that doesn't beat?",
-    answer: "Artichoke"
+    answer: "Artichoke",
   },
   {
     question: "What has keys but can't open locks?",
-    answer: "Piano"
+    answer: "Piano",
   },
   {
-    question: "I speak without a mouth and hear without ears. I have no body, but I come alive with wind. What am I?",
-    answer: "Echo"
+    question:
+      "I speak without a mouth and hear without ears. I have no body, but I come alive with wind. What am I?",
+    answer: "Echo",
   },
   {
     question: "What has many teeth but can't bite?",
-    answer: "Comb"
+    answer: "Comb",
   },
   {
     question: "What is full of holes but still holds water?",
-    answer: "Sponge"
+    answer: "Sponge",
   },
   {
     question: "What has a head, a tail, is brown, and has no legs?",
-    answer: "Penny"
+    answer: "Penny",
   },
   {
     question: "The more you take, the more you leave behind. What am I?",
-    answer: "Footsteps"
+    answer: "Footsteps",
   },
   {
-    question: "I have cities but no houses, forests but no trees, and rivers but no water. What am I?",
-    answer: "Map"
+    question:
+      "I have cities but no houses, forests but no trees, and rivers but no water. What am I?",
+    answer: "Map",
   },
   {
     question: "What gets wetter and wetter the more it dries?",
-    answer: "Towel"
+    answer: "Towel",
   },
   {
     question: "What has hands but can't clap?",
-    answer: "Clock"
+    answer: "Clock",
   },
   {
     question: "What has a thumb and four fingers but is not alive?",
-    answer: "Glove"
+    answer: "Glove",
   },
   {
     question: "What has one eye but cannot see?",
-    answer: "Needle"
+    answer: "Needle",
   },
   {
     question: "What goes up but never comes down?",
-    answer: "Age"
+    answer: "Age",
   },
   {
     question: "What has a face but no eyes, hands but no arms?",
-    answer: "Clock"
+    answer: "Clock",
   },
   {
     question: "What is so delicate that saying its name breaks it?",
-    answer: "Silence"
+    answer: "Silence",
   },
   {
-    question: "I can fly without wings. I can cry without eyes. Wherever I go, darkness follows me. What am I?",
-    answer: "Cloud"
+    question:
+      "I can fly without wings. I can cry without eyes. Wherever I go, darkness follows me. What am I?",
+    answer: "Cloud",
   },
   {
-    question: "What has keys but can't open locks, space but no room, and you can enter but can't go inside?",
-    answer: "Keyboard"
+    question:
+      "What has keys but can't open locks, space but no room, and you can enter but can't go inside?",
+    answer: "Keyboard",
   },
   {
     question: "What has a neck but no head?",
-    answer: "Bottle"
+    answer: "Bottle",
   },
   {
     question: "What has to be broken before you can use it?",
-    answer: "Egg"
-  }
+    answer: "Egg",
+  },
 ];
-let randomRiddle 
-function setans(){
-    clrpage();
-    const q = document.createElement('h1');
-    const a = document.createElement('h3');
-    q.textContent=randomRiddle.question;
-    a.textContent=randomRiddle.answer;
-    actionContainer.appendChild(q);
-   actionContainer.appendChild(a);
-   
-
+let randomRiddle;
+function setans() {
+  clrpage();
+  const q = document.createElement("h1");
+  const a = document.createElement("h3");
+  q.textContent = randomRiddle.question;
+  a.textContent = randomRiddle.answer;
+  a.style.padding = "20px";
+  actionContainer.appendChild(q);
+  actionContainer.appendChild(a);
 }
 // Function to generate a random riddle
 function generateRiddle() {
-    clrpage();
+  clrpage();
   // Get a random riddle from the array
   const randomIndex = Math.floor(Math.random() * riddles.length);
-   randomRiddle = riddles[randomIndex];
+  randomRiddle = riddles[randomIndex];
   // Display the riddle question
-    const tj = document.createElement('h1');
-    // Get the quote at the random index
+  const tj = document.createElement("h1");
+  // Get the quote at the random index
 
-    tj.textContent= randomRiddle.question;
-    actionContainer.appendChild(tj);
-    
-    myLink.style.display="inline";
+  tj.textContent = randomRiddle.question;
+  actionContainer.appendChild(tj);
+
+  myLink.style.display = "inline";
 }
 
 // Attach event listener to the button
 const riddleBtn = document.getElementById("riddle");
 riddleBtn.addEventListener("click", generateRiddle);
- var myLink = document.getElementById("mylink");
+var myLink = document.getElementById("mylink");
 
-  // Add a click event listener to the <a> tag
-  myLink.addEventListener("click",setans);
+// Add a click event listener to the <a> tag
+myLink.addEventListener("click", setans);
